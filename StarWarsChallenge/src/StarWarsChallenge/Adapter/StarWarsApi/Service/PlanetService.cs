@@ -14,15 +14,22 @@ namespace StarWarsChallenge.Adapter.StarWarsApi.Service
         public int GetPlanetAppearances(string planet)
         {
             var number = 0;
-
-            var result = client.GetFromJsonAsync<ApiResponse>($"planets/?search={planet}").Result;
-
-            if  (result != null && result.count > 0) 
+            try
             {
-                number = result.results.First().films.Count();
+                var result = client.GetFromJsonAsync<ApiResponse>($"planets/?search={planet}").Result;
+
+                if (result != null && result.count > 0)
+                {
+                    number = result.results.First().films.Count();
+                }
+
+                return number;
+            }
+            catch (Exception ex)
+            {
+                return number;
             }
 
-            return number;
         }
 
     }

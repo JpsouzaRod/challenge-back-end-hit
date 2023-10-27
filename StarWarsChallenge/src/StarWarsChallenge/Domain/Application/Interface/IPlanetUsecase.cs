@@ -5,10 +5,10 @@ namespace StarWarsChallenge.Domain.Application.Interface
 {
     public interface IPlanetUsecase
     {
-        public void AddPlanet(PlanetRequest planet);
-        public IList<PlanetResponse> ListPlanets();
-        public PlanetResponse FindPlanetById(int id);
-        public PlanetResponse FindPlanetByName(string name);
-        public void RemovePlanetById(int id);
+        public BaseResponse AddPlanet(PlanetRequest planet);
+        public BaseResponse ListPlanets();
+        public BaseResponse FindPlanetById(int id);
+        public BaseResponse FindPlanetByName(string name);
+        public BaseResponse RemovePlanetById(int id);
     }
 }

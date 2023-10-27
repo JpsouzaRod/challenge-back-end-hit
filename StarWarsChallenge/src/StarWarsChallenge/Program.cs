@@ -32,31 +32,52 @@ app.UseHttpsRedirection();
 app.MapGet("/planet", (IPlanetUsecase usecase) =>
 {
     var result = usecase.ListPlanets();
-    return Results.Ok(result);
+    
+    if (result.StatusOk)
+        return Results.Ok(result);
+    else
+        return Results.BadRequest(result);
+    
+
 });
 
 app.MapPost("/planet", (IPlanetUsecase usecase, PlanetRequest planet) =>
 {
-    usecase.AddPlanet(planet);
-    return Results.Ok("Planeta cadastrado com sucesso");
+    var result = usecase.AddPlanet(planet);
+    if (result.StatusOk)
+        return Results.Ok(result);
+    else
+        return Results.BadRequest(result);
 });
 
-app.MapGet("/planet/id/{id}", (IPlanetUsecase usecase, int id) =>
+app.MapGet("/planet/{id}", (IPlanetUsecase usecase, int id) =>
 {
     var result = usecase.FindPlanetById(id);
-    return Results.Ok(result);
+
+    if (result.StatusOk)
+        return Results.Ok(result);
+    else
+        return Results.BadRequest(result);
 });
 
-app.MapGet("/planet/{name}", (IPlanetUsecase usecase, string name) =>
+app.MapGet("/planet/name/{name}", (IPlanetUsecase usecase, string name) =>
 {
     var result = usecase.FindPlanetByName(name);
-    return Results.Ok(result);
+
+    if (result.StatusOk)
+        return Results.Ok(result);
+    else
+        return Results.BadRequest(result);
 });
 
 app.MapDelete("/planet/{id}", (IPlanetUsecase usecase, int id) =>
 {
-    usecase.RemovePlanetById(id);
-    return Results.Ok("Planeta excluido com sucesso");
+    var result = usecase.RemovePlanetById(id);
+
+    if (result.StatusOk)
+        return Results.Ok(result);
+    else
+        return Results.BadRequest(result);
 });
 
 app.Run();
