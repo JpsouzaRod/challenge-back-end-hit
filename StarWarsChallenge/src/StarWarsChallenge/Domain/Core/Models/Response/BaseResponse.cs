@@ -1,7 +1,7 @@
-﻿namespace StarWarsChallenge.Domain.Core.Models
+﻿namespace StarWarsChallenge.Domain.Core.Models.Response
 {
     public class BaseResponse
-    { 
+    {
         public BaseResponse()
         {
             Planets = new List<PlanetResponse>();

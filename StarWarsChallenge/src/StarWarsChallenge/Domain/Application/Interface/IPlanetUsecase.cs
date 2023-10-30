@@ -1,4 +1,5 @@
-﻿using StarWarsChallenge.Domain.Core.Models;
+﻿using StarWarsChallenge.Domain.Core.Models.Request;
+using StarWarsChallenge.Domain.Core.Models.Response;
 using System.Xml.Linq;
 
 namespace StarWarsChallenge.Domain.Application.Interface

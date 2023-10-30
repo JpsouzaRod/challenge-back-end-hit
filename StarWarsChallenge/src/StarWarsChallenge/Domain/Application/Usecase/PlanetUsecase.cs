@@ -1,6 +1,8 @@
 ﻿using StarWarsChallenge.Adapter.StarWarsApi.Models;
 using StarWarsChallenge.Domain.Application.Interface;
 using StarWarsChallenge.Domain.Core.Models;
+using StarWarsChallenge.Domain.Core.Models.Request;
+using StarWarsChallenge.Domain.Core.Models.Response;
 using System.Numerics;
 
 namespace StarWarsChallenge.Domain.Application.Usecase
@@ -46,7 +48,7 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                     throw new Exception("O valor de busca não foi localizado.");
                 
                 var response = new PlanetResponse(result);
-                response.Occurrences = service.GetPlanetAppearances(response.Name);
+                response.Occurrences = service.GetPlanetAppearancesByName(response.Name);
 
                 return new BaseResponse()
                 {
@@ -78,7 +80,7 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                     throw new Exception("O valor de busca não foi localizado.");
 
                 var response = new PlanetResponse(result);
-                response.Occurrences = service.GetPlanetAppearances(response.Name);
+                response.Occurrences = service.GetPlanetAppearancesByName(response.Name);
 
                 return new BaseResponse()
                 {
@@ -102,6 +104,8 @@ namespace StarWarsChallenge.Domain.Application.Usecase
 
         public BaseResponse ListPlanets()
         {
+            var result = new List<PlanetResponse>();
+            
             try
             {
                 var planets = repository.ListPlanets();
@@ -109,12 +113,16 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                 if (planets == null || planets.Count() == 0)
                     throw new Exception("Nenhum planeta foi localizado.");
 
-                var result = new List<PlanetResponse>();
+                var planetList = service.GetPlanetList();
+                if (planets == null || planets.Count() == 0)
+                    throw new Exception("Erro ao se conectar com a API externa.");
 
                 foreach (var planet in planets)
                 {
                     var response = new PlanetResponse(planet);
-                    response.Occurrences = service.GetPlanetAppearances(response.Name);
+
+                    var planetData = planetList.Find(x => x.name.ToLower() == planet.Name.ToLower());
+                    response.Occurrences = planetData != null ? planetData.films.Count() : 0;
 
                     result.Add(response);
                 }

@@ -1,4 +1,4 @@
-﻿namespace StarWarsChallenge.Domain.Core.Models
+﻿namespace StarWarsChallenge.Domain.Core.Models.Request
 {
     public class PlanetRequest
     {

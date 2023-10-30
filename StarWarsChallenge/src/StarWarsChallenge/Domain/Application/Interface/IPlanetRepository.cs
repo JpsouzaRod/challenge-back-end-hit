@@ -1,4 +1,5 @@
-﻿using StarWarsChallenge.Domain.Core.Models;
+﻿using StarWarsChallenge.Domain.Core.Models.Adapter.Postgres;
+using StarWarsChallenge.Domain.Core.Models.Request;
 
 namespace StarWarsChallenge.Domain.Application.Interface
 {

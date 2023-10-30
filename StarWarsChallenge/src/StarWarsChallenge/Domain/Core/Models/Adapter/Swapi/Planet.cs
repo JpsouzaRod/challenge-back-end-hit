@@ -1,4 +1,4 @@
-﻿namespace StarWarsChallenge.Adapter.StarWarsApi.Models
+﻿namespace StarWarsChallenge.Domain.Core.Models.Adapter.Swapi
 {
     public class Planet
     {

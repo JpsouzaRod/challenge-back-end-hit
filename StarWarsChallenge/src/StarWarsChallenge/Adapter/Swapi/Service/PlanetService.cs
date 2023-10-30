@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Rewrite;
 using StarWarsChallenge.Adapter.StarWarsApi.Models;
 using StarWarsChallenge.Domain.Application.Interface;
+using StarWarsChallenge.Domain.Core.Models.Adapter.Swapi;
 
 namespace StarWarsChallenge.Adapter.StarWarsApi.Service
 {
@@ -11,9 +12,10 @@ namespace StarWarsChallenge.Adapter.StarWarsApi.Service
             BaseAddress = new Uri("https://swapi.dev/api/")
         }; 
 
-        public int GetPlanetAppearances(string planet)
+        public int GetPlanetAppearancesByName(string planet)
         {
             var number = 0;
+
             try
             {
                 var result = client.GetFromJsonAsync<ApiResponse>($"planets/?search={planet}").Result;
@@ -28,6 +30,28 @@ namespace StarWarsChallenge.Adapter.StarWarsApi.Service
             catch (Exception ex)
             {
                 return number;
+            }
+
+        }
+
+        public List<Planet> GetPlanetList()
+        {
+            List<Planet> list = new List<Planet>();
+
+            try
+            {
+                var result = client.GetFromJsonAsync<ApiResponse>($"planets/").Result;
+
+                if (result != null && result.count > 0)
+                {
+                    list = result.results.ToList<Planet>();
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return list;
             }
 
         }

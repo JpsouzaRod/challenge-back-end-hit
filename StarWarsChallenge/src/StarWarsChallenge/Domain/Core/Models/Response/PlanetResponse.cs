@@ -1,4 +1,6 @@
-﻿namespace StarWarsChallenge.Domain.Core.Models
+﻿using StarWarsChallenge.Domain.Core.Models.Adapter.Postgres;
+
+namespace StarWarsChallenge.Domain.Core.Models
 {
     public class PlanetResponse
     {

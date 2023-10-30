@@ -1,7 +1,10 @@
-﻿namespace StarWarsChallenge.Domain.Application.Interface
+﻿using StarWarsChallenge.Domain.Core.Models.Adapter.Swapi;
+
+namespace StarWarsChallenge.Domain.Application.Interface
 {
     public interface IPlanetService
     {
-        int GetPlanetAppearances(string planet);
+        int GetPlanetAppearancesByName(string planet);
+        List<Planet> GetPlanetList();
     }
 }

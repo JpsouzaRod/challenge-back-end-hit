@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using StarWarsChallenge.Adapter.Postgres.Context;
 using StarWarsChallenge.Domain.Application.Interface;
-using StarWarsChallenge.Domain.Core.Models;
+using StarWarsChallenge.Domain.Core.Models.Adapter.Postgres;
+using StarWarsChallenge.Domain.Core.Models.Request;
 
 namespace StarWarsChallenge.Adapter.Postgres.Repository
 {
