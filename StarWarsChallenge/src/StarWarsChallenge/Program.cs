@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StarWarsChallenge.Adapter.Postgres.Context;
 using StarWarsChallenge.Adapter.Postgres.Repository;
+using StarWarsChallenge.Adapter.Redis.Service;
 using StarWarsChallenge.Adapter.StarWarsApi.Service;
 using StarWarsChallenge.Domain.Application.Interface;
 using StarWarsChallenge.Domain.Application.Usecase;
@@ -13,10 +14,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddStackExchangeRedisCache(x => {
+    x.InstanceName = "Planet";
+    x.Configuration = "localhost:";
+});
+
+builder.Services.AddScoped<DbContext>();
+
+builder.Services.AddScoped<IPlanetCache, PlanetCache>();
+builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
 builder.Services.AddScoped<IPlanetUsecase, PlanetUsecase>();
 builder.Services.AddScoped<IPlanetService, PlanetService>();
-builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
-builder.Services.AddScoped<DbContext>();
+
 
 var app = builder.Build();
 

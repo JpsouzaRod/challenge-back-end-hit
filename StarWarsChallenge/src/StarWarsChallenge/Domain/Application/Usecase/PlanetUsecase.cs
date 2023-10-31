@@ -4,6 +4,7 @@ using StarWarsChallenge.Domain.Core.Models;
 using StarWarsChallenge.Domain.Core.Models.Request;
 using StarWarsChallenge.Domain.Core.Models.Response;
 using System.Numerics;
+using System.Text.Json;
 
 namespace StarWarsChallenge.Domain.Application.Usecase
 {
@@ -46,11 +47,13 @@ namespace StarWarsChallenge.Domain.Application.Usecase
 
                 if (result == null) 
                     throw new Exception("O valor de busca não foi localizado.");
-                
-                var response = new PlanetResponse(result);
-                response.Occurrences = service.GetPlanetAppearancesByName(response.Name);
 
-                return new BaseResponse()
+                var count = service.GetPlanetByName(result.Name).Result.films.Count();
+
+                var response = new PlanetResponse(result);
+                response.Occurrences = count;
+
+                var planet =  new BaseResponse()
                 {
                     StatusOk = true,
                     Planets = new List<PlanetResponse>()
@@ -58,6 +61,8 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                         response
                     }
                 };
+
+                return planet;
             }
             catch
             {
@@ -79,10 +84,12 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                 if (result == null)
                     throw new Exception("O valor de busca não foi localizado.");
 
-                var response = new PlanetResponse(result);
-                response.Occurrences = service.GetPlanetAppearancesByName(response.Name);
+                var count = service.GetPlanetByName(result.Name).Result.films.Count();
 
-                return new BaseResponse()
+                var response = new PlanetResponse(result);
+                response.Occurrences = count;
+
+                var planet = new BaseResponse()
                 {
                     StatusOk = true,
                     Planets = new List<PlanetResponse>()
@@ -90,6 +97,8 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                         response
                     }
                 };
+
+                return planet;
             }
             catch
             {
@@ -113,7 +122,8 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                 if (planets == null || planets.Count() == 0)
                     throw new Exception("Nenhum planeta foi localizado.");
 
-                var planetList = service.GetPlanetList();
+                var planetList = service.GetPlanetList().Result;
+
                 if (planets == null || planets.Count() == 0)
                     throw new Exception("Erro ao se conectar com a API externa.");
 

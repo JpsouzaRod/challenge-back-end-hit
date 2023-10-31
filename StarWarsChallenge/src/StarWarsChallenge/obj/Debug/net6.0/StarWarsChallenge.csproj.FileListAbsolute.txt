@@ -100,3 +100,15 @@ C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\obj
 C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\obj\Debug\net6.0\StarWarsChallenge.pdb
 C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\obj\Debug\net6.0\StarWarsChallenge.genruntimeconfig.cache
 C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\obj\Debug\net6.0\ref\StarWarsChallenge.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\StackExchange.Redis.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\W3as\challenge-back-end-hit\StarWarsChallenge\src\StarWarsChallenge\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

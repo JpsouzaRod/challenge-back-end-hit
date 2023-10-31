@@ -4,7 +4,7 @@ namespace StarWarsChallenge.Domain.Application.Interface
 {
     public interface IPlanetService
     {
-        int GetPlanetAppearancesByName(string planet);
-        List<Planet> GetPlanetList();
+        Task<Planet> GetPlanetByName(string planet);
+        Task<List<Planet>> GetPlanetList();
     }
 }
