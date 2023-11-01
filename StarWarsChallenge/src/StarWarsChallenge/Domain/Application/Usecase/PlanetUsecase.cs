@@ -3,6 +3,7 @@ using StarWarsChallenge.Domain.Application.Interface;
 using StarWarsChallenge.Domain.Core.Models;
 using StarWarsChallenge.Domain.Core.Models.Request;
 using StarWarsChallenge.Domain.Core.Models.Response;
+using System.Collections.Specialized;
 using System.Numerics;
 using System.Text.Json;
 
@@ -41,6 +42,8 @@ namespace StarWarsChallenge.Domain.Application.Usecase
 
         public BaseResponse FindPlanetById(int id)
         {
+            var count = 0;
+
             try
             {
                 var result = repository.FindPlanetById(id);
@@ -48,7 +51,10 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                 if (result == null) 
                     throw new Exception("O valor de busca não foi localizado.");
 
-                var count = service.GetPlanetByName(result.Name).Result.films.Count();
+                var planetResult = service.GetPlanetByName(result.Name).Result;
+
+                if (planetResult != null)
+                    count = planetResult.films.Count();
 
                 var response = new PlanetResponse(result);
                 response.Occurrences = count;
@@ -77,6 +83,8 @@ namespace StarWarsChallenge.Domain.Application.Usecase
 
         public BaseResponse FindPlanetByName(string name)
         {
+            var count = 0;
+
             try
             {
                 var result = repository.FindPlanetByName(name);
@@ -84,7 +92,11 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                 if (result == null)
                     throw new Exception("O valor de busca não foi localizado.");
 
-                var count = service.GetPlanetByName(result.Name).Result.films.Count();
+
+                var planetResult = service.GetPlanetByName(result.Name).Result;
+
+                if (planetResult != null)
+                    count = planetResult.films.Count();
 
                 var response = new PlanetResponse(result);
                 response.Occurrences = count;

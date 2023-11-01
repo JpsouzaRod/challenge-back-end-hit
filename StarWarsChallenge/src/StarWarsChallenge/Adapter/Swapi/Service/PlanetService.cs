@@ -22,7 +22,10 @@ namespace StarWarsChallenge.Adapter.StarWarsApi.Service
 
         public async Task<Planet> GetPlanetByName(string planet)
         {
-            var planetResult = new Planet();
+            var planetResult = new Planet()
+            {
+                films = new List<string> { }
+            };
 
             try
             {

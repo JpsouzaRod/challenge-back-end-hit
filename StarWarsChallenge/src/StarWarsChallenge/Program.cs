@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddStackExchangeRedisCache(x => {
     x.InstanceName = "Planet";
-    x.Configuration = "localhost:";
+    x.Configuration = "localhost:5002";
 });
 
 builder.Services.AddScoped<DbContext>();
@@ -42,14 +42,7 @@ var sw = new Stopwatch();
 
 app.MapGet("/planet", (IPlanetUsecase usecase) =>
 {
-    sw.Start();
-        var result = usecase.ListPlanets();
-    sw.Stop();
-
-    Console.WriteLine("Tempo gasto     GET /planet : " + sw.ElapsedMilliseconds.ToString() + " milisegundos");
-    Console.WriteLine("Tempo decorrido GET /planet: {0:hh\\:mm\\:ss}", sw.Elapsed);
-
-    sw.Reset();
+    var result = usecase.ListPlanets();
 
     if (result.StatusOk)
         return Results.Ok(result);
@@ -59,14 +52,7 @@ app.MapGet("/planet", (IPlanetUsecase usecase) =>
 
 app.MapPost("/planet", (IPlanetUsecase usecase, PlanetRequest planet) =>
 {
-    sw.Start();
-        var result = usecase.AddPlanet(planet);
-    sw.Stop();
-
-    Console.WriteLine("Tempo gasto     POST /planet : " + sw.ElapsedMilliseconds.ToString() + " milisegundos");
-    Console.WriteLine("Tempo decorrido POST /planet : {0:hh\\:mm\\:ss}", sw.Elapsed);
-
-    sw.Reset();
+    var result = usecase.AddPlanet(planet);
 
     if (result.StatusOk)
         return Results.Ok(result);
@@ -76,15 +62,8 @@ app.MapPost("/planet", (IPlanetUsecase usecase, PlanetRequest planet) =>
 
 app.MapGet("/planet/{id}", (IPlanetUsecase usecase, int id) =>
 {
-    sw.Start();
-        var result = usecase.FindPlanetById(id);
-    sw.Stop();
-
-    Console.WriteLine("Tempo gasto     GET /planet/id : " + sw.ElapsedMilliseconds.ToString() + " milisegundos");
-    Console.WriteLine("Tempo decorrido GET /planet/id : {0:hh\\:mm\\:ss}", sw.Elapsed);
-
-    sw.Reset();
-
+    var result = usecase.FindPlanetById(id);
+    
     if (result.StatusOk)
         return Results.Ok(result);
     else
@@ -93,14 +72,7 @@ app.MapGet("/planet/{id}", (IPlanetUsecase usecase, int id) =>
 
 app.MapGet("/planet/name/{name}", (IPlanetUsecase usecase, string name) =>
 {
-    sw.Start();
-        var result = usecase.FindPlanetByName(name);
-    sw.Stop();
-
-    Console.WriteLine("Tempo gasto     GET /planet/name : " + sw.ElapsedMilliseconds.ToString() + " milisegundos");
-    Console.WriteLine("Tempo decorrido GET /planet/name : {0:hh\\:mm\\:ss}", sw.Elapsed);
-
-    sw.Reset();
+    var result = usecase.FindPlanetByName(name);
 
     if (result.StatusOk)
         return Results.Ok(result);
@@ -110,15 +82,8 @@ app.MapGet("/planet/name/{name}", (IPlanetUsecase usecase, string name) =>
 
 app.MapDelete("/planet/{id}", (IPlanetUsecase usecase, int id) =>
 {
-    sw.Start();
     var result = usecase.RemovePlanetById(id);
-    sw.Stop();
-
-    Console.WriteLine("Tempo gasto     DELETE /planet/id: " + sw.ElapsedMilliseconds.ToString() + " milisegundos");
-    Console.WriteLine("Tempo decorrido DELETE /planet/id: {0:hh\\:mm\\:ss}", sw.Elapsed);
-
-    sw.Reset();
-
+   
     if (result.StatusOk)
         return Results.Ok(result);
     else
