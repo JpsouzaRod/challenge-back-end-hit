@@ -49,7 +49,7 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                 var result = repository.FindPlanetById(id);
 
                 if (result == null) 
-                    throw new Exception("O valor de busca não foi localizado.");
+                    throw new Exception();
 
                 var planetResult = service.GetPlanetByName(result.Name).Result;
 
