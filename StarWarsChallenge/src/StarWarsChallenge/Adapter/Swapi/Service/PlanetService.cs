@@ -7,26 +7,18 @@ namespace StarWarsChallenge.Adapter.StarWarsApi.Service
 {
     public class PlanetService : IPlanetService
     {
-        public PlanetService(IPlanetCache _cache)
+        public PlanetService(HttpClient _client, IPlanetCache _cache)
         {
             cache = _cache;
+            client = _client;
         }
 
-        readonly IPlanetCache cache;
+        private readonly IPlanetCache cache;
         private readonly string key = "List";
-
-        private HttpClient client = new HttpClient()
-        {
-            BaseAddress = new Uri("https://swapi.dev/api/")
-        }; 
+        private readonly HttpClient client;
 
         public async Task<Planet> GetPlanetByName(string planet)
         {
-            var planetResult = new Planet()
-            {
-                films = new List<string> { }
-            };
-
             try
             {
                 var dataPlanet = await cache.GetAsync(planet);
@@ -40,16 +32,17 @@ namespace StarWarsChallenge.Adapter.StarWarsApi.Service
 
                 if (result != null && result.count > 0)
                 {
-                    planetResult = result.results.First();
+                    var planetResult = result.results.First();
                     await cache.SetAsync(planet, JsonSerializer.Serialize(planetResult));
+
+                    return planetResult;
                 }
 
-
-                return planetResult;
+                return null;
             }
             catch (Exception ex)
             {
-                return planetResult;
+                return null;
             }
 
         }

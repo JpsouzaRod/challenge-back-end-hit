@@ -3,9 +3,7 @@ using StarWarsChallenge.Domain.Application.Interface;
 using StarWarsChallenge.Domain.Core.Models;
 using StarWarsChallenge.Domain.Core.Models.Request;
 using StarWarsChallenge.Domain.Core.Models.Response;
-using System.Collections.Specialized;
-using System.Numerics;
-using System.Text.Json;
+using System;
 
 namespace StarWarsChallenge.Domain.Application.Usecase
 {
@@ -31,7 +29,7 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                     Message = "Cadastro foi feito com sucesso."
                 };
             }
-            catch (Exception ex)
+            catch 
             {
                 return new BaseResponse()
                 {
@@ -48,12 +46,12 @@ namespace StarWarsChallenge.Domain.Application.Usecase
             {
                 var result = repository.FindPlanetById(id);
 
-                if (result == null) 
-                    throw new Exception();
+                if (result is null) 
+                    throw new Exception("Nenhum planeta foi localizado.");
 
                 var planetResult = service.GetPlanetByName(result.Name).Result;
 
-                if (planetResult != null)
+                if (planetResult is not null)
                     count = planetResult.films.Count();
 
                 var response = new PlanetResponse(result);
@@ -70,11 +68,11 @@ namespace StarWarsChallenge.Domain.Application.Usecase
 
                 return planet;
             }
-            catch
+            catch(Exception ex)
             {
                 return new BaseResponse()
                 {
-                    Message = "Nenhum planeta foi localizado."
+                    Message = ex.Message
                 };
             }
 
@@ -89,13 +87,12 @@ namespace StarWarsChallenge.Domain.Application.Usecase
             {
                 var result = repository.FindPlanetByName(name);
 
-                if (result == null)
-                    throw new Exception("O valor de busca não foi localizado.");
-
+                if (result is null)
+                    throw new Exception("Nenhum planeta foi localizado.");
 
                 var planetResult = service.GetPlanetByName(result.Name).Result;
 
-                if (planetResult != null)
+                if (planetResult is not null)
                     count = planetResult.films.Count();
 
                 var response = new PlanetResponse(result);
@@ -112,11 +109,11 @@ namespace StarWarsChallenge.Domain.Application.Usecase
 
                 return planet;
             }
-            catch
+            catch(Exception ex)
             {
                 return new BaseResponse()
                 {
-                    Message = "Nenhum planeta foi localizado."
+                    Message = ex.Message
                 };
             }
 
@@ -131,12 +128,12 @@ namespace StarWarsChallenge.Domain.Application.Usecase
             {
                 var planets = repository.ListPlanets();
 
-                if (planets == null || planets.Count() == 0)
-                    throw new Exception("Nenhum planeta foi localizado.");
+                if (planets is null || planets.Count() == 0)
+                    throw new Exception("Nenhum planeta foi encontrado");
 
                 var planetList = service.GetPlanetList().Result;
 
-                if (planets == null || planets.Count() == 0)
+                if (planetList.Count() == 0)
                     throw new Exception("Erro ao se conectar com a API externa.");
 
                 foreach (var planet in planets)
@@ -155,11 +152,11 @@ namespace StarWarsChallenge.Domain.Application.Usecase
                     Planets = result
                 };
             }
-            catch
+            catch(Exception ex)
             {
                 return new BaseResponse()
                 {
-                    Message = "Não foi possivel realizar esta consulta."
+                    Message = ex.Message
                 };
             }
         }

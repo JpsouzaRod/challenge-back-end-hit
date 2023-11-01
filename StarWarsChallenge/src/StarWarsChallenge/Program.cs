@@ -21,6 +21,11 @@ builder.Services.AddStackExchangeRedisCache(x => {
 
 builder.Services.AddScoped<DbContext>();
 
+builder.Services.AddSingleton(new HttpClient
+{
+    BaseAddress = new Uri("https://swapi.dev/api/")
+});
+
 builder.Services.AddScoped<IPlanetCache, PlanetCache>();
 builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
 builder.Services.AddScoped<IPlanetUsecase, PlanetUsecase>();
