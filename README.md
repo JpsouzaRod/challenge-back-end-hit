@@ -23,3 +23,7 @@ Funcionalidades desejadas:
 
 **Linguagens que usamos:** Kotlin, Scala, Java  
 **Bancos que usamos:**  PostgreSQL-11 with JSONB
+
+
+Link da documentação do código:
+https://documenter.getpostman.com/view/17588114/2s9YXbB6Fh 
