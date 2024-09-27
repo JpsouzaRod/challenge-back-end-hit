@@ -2,4 +2,4 @@
 
 import esteiras.helloWorldTest
 
-new helloWorldTest().Executar()
+new helloWorldTest().SayHello()
