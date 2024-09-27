@@ -1,4 +1,4 @@
-Library('Library-Shared')
+@Library('Library-Shared')
 
 import esteiras.helloWorldTest
 
