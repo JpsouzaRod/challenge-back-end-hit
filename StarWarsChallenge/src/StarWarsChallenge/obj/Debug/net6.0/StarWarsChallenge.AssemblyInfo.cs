@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("448e2af8-ccb9-4a73-98b2-1f7877fd07dd")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("StarWarsChallenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bed7bc5f4ac2194e6e7e41f717144c11d2a4737f")]
 [assembly: System.Reflection.AssemblyProductAttribute("StarWarsChallenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StarWarsChallenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
